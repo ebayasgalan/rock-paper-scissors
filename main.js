@@ -3,7 +3,7 @@ let computerScore = 0;
 const userScore_span = document.querySelector("#user-score");
 const computerScore_span = document.querySelector("#computer-score");
 const scoreBoard_div = document.querySelector(".score-board");
-const result_div = document.querySelector(".result");
+const result_p = document.querySelector(".result");
 const rock_div = document.querySelector("#r");
 const paper_div = document.querySelector("#p");
 const scissors_div = document.querySelector("#s");
@@ -14,19 +14,37 @@ function getComputerChoice() {
   return choices[randomNumber];
 }
 
-function win() {
+function convertToWord(letter) {
+  if (letter === "r") return "Rock";
+  if (letter === "p") return "Paper";
+  return 'Scissors';
+}
+
+function win(userChoice, computerChoice) {
   userScore++;
   userScore_span.innerHTML = userScore;
   computerScore_span.innerHTML = computerScore;
+  const smallUserWord = 'user'.fontsize(4).sub();
+  const smallCompWord = 'computer'.fontsize(4).sub();
+  result_p.innerHTML = `${convertToWord(userChoice)}${smallUserWord} beats ${convertToWord(computerChoice)}${smallCompWord}. You win!`;
 }
 
-function lose() {
-  console.log('Lost!');
+function lose(userChoice, computerChoice) {
+  userScore++;
+  userScore_span.innerHTML = userScore;
+  computerScore_span.innerHTML = computerScore;
+  const smallUserWord = 'user'.fontsize(4).sub();
+  const smallCompWord = 'computer'.fontsize(4).sub();
+  result_p.innerHTML = `${convertToWord(userChoice)}${smallUserWord} loses to ${convertToWord(computerChoice)}${smallCompWord}. You Lost!`;
 }
 
-function draw() {
-  console.log('Draw!');
-}
+// function draw() {
+//   userScore_span.innerHTML = userScore;
+//   computerScore_span.innerHTML = computerScore;
+//   const smallUserWord = 'user'.fontsize(4).sub();
+//   const smallCompWord = 'computer'.fontsize(4).sub();
+//   result_p.innerHTML = `${convertToWord(userChoice)}${smallUserWord} draws ${convertToWord(computerChoice)}${smallCompWord}. Draw!`;
+// }
 
 function game(userChoice) {
   const computerChoice = getComputerChoice();
