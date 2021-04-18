@@ -38,13 +38,11 @@ function lose(userChoice, computerChoice) {
   result_p.innerHTML = `${convertToWord(userChoice)}${smallUserWord} loses to ${convertToWord(computerChoice)}${smallCompWord}. You Lost!`;
 }
 
-// function draw() {
-//   userScore_span.innerHTML = userScore;
-//   computerScore_span.innerHTML = computerScore;
-//   const smallUserWord = 'user'.fontsize(4).sub();
-//   const smallCompWord = 'computer'.fontsize(4).sub();
-//   result_p.innerHTML = `${convertToWord(userChoice)}${smallUserWord} draws ${convertToWord(computerChoice)}${smallCompWord}. Draw!`;
-// }
+function draw(userChoice, computerChoice) {
+  const smallUserWord = 'user'.fontsize(4).sub();
+  const smallCompWord = 'computer'.fontsize(4).sub();
+  result_p.innerHTML = `${convertToWord(userChoice)}${smallUserWord} equals ${convertToWord(computerChoice)}${smallCompWord}. Draw!`;
+}
 
 function game(userChoice) {
   const computerChoice = getComputerChoice();
@@ -52,17 +50,17 @@ function game(userChoice) {
     case "rs":
     case "pr":
     case "sp":
-      win();
+      win(userChoice, computerChoice);
       break;
     case "rp":
     case "ps":
     case "sr":
-      lose();
+      lose(userChoice, computerChoice);
       break;
     case "rr":
     case "pp":
     case "ss":
-      draw();
+      draw(userChoice, computerChoice);
       break;
   }
 }
